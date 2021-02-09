@@ -113,6 +113,7 @@ export const App = () => {
                         <FormField label="Name" required>
                           <Input
                             placeholder="Enter a name"
+                            dataHook="name-input"
                             value={name}
                             onChange={(event) => setName(event.target.value)}
                           />
@@ -123,6 +124,7 @@ export const App = () => {
                       <Col span={6}>
                         <FormField label="Favorite color">
                           <Dropdown
+                            dataHook="color-dropdown"
                             placeholder="Enter a color"
                             options={colorOptions}
                             onSelect={(value) => {
@@ -138,6 +140,7 @@ export const App = () => {
                         <Checkbox
                           onChange={() => setTermsOfUse(!termsOfUse)}
                           checked={termsOfUse}
+                          dataHook="terms-of-use-checkbox"
                         >
                           I agree for the terms of use
                         </Checkbox>
@@ -145,7 +148,11 @@ export const App = () => {
                       <Col span={4}>
                         <Box flexWrap="wrap">
                           <Box marginLeft="small" marginRight="small">
-                            <Button priority="secondary" onClick={clearForm}>
+                            <Button
+                              priority="secondary"
+                              onClick={clearForm}
+                              dataHook="clear-button"
+                            >
                               Clear
                             </Button>
                           </Box>
@@ -153,6 +160,7 @@ export const App = () => {
                             <Button
                               disabled={!formEnabled}
                               onClick={handleSubmit}
+                              dataHook="submit-button"
                             >
                               Submit
                             </Button>
@@ -176,6 +184,7 @@ export const App = () => {
                             placeholder="Enter something interesting"
                             onChange={(event) => setFunFact(event.target.value)}
                             value={funFact}
+                            dataHook="fun-fact-input-area"
                           />
                         </FormField>
                       </Card.Content>
@@ -194,7 +203,9 @@ export const App = () => {
                               <Text weight="normal">Name:</Text>
                             </Col>
                             <Col span="6">
-                              <Text weight="normal">{formData.name}</Text>
+                              <Text dataHook="name-text" weight="normal">
+                                {formData.name}
+                              </Text>
                             </Col>
                           </Row>
                           <Row>
@@ -202,7 +213,9 @@ export const App = () => {
                               <Text weight="normal">Favorite Color:</Text>
                             </Col>
                             <Col span="6">
-                              <Text weight="normal">{formData.color}</Text>
+                              <Text dataHook="color-text" weight="normal">
+                                {formData.color}
+                              </Text>
                             </Col>
                           </Row>
                           <Row>
@@ -210,7 +223,9 @@ export const App = () => {
                               <Text weight="normal">Fun Fact:</Text>
                             </Col>
                             <Col span="6">
-                              <Text weight="normal">{formData.funFact}</Text>
+                              <Text dataHook="fun-fact-text" weight="normal">
+                                {formData.funFact}
+                              </Text>
                             </Col>
                           </Row>
                         </Card.Content>
