@@ -13,10 +13,19 @@ import {
   Checkbox,
   InputArea,
   Text,
-  DropdownLayoutValueOption,
 } from 'wix-style-react';
 
-const colorOptions = [
+interface IFormData {
+  name: string;
+  color: string;
+  funFact: string;
+}
+interface IColor {
+  id: number;
+  value: string;
+}
+
+const colorOptions: IColor[] = [
   {
     id: 1,
     value: 'Red',
@@ -39,7 +48,7 @@ const colorOptions = [
   },
 ];
 
-const initialColorState: DropdownLayoutValueOption = { value: '', id: 0 };
+const initialColorState: IColor = { value: '', id: 0 };
 
 export const App = () => {
   const [name, setName] = useState('');
@@ -47,12 +56,7 @@ export const App = () => {
   const [termsOfUse, setTermsOfUse] = useState(false);
   const [funFact, setFunFact] = useState('');
   const [formEnabled, setFormEnabled] = useState(false);
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    color: '',
-    funFact: '',
-  });
+  const [formData, setFormData] = useState<IFormData | null>(null);
 
   const clearForm = () => {
     setName('');
@@ -62,10 +66,9 @@ export const App = () => {
   };
 
   const handleSubmit = () => {
-    setFormSubmitted(true);
     setFormData({
       name,
-      color: color.value as string,
+      color: color.value,
       funFact,
     });
   };
@@ -123,7 +126,7 @@ export const App = () => {
                             placeholder="Enter a color"
                             options={colorOptions}
                             onSelect={(value) => {
-                              setColor(value);
+                              setColor(value as IColor);
                             }}
                             selectedId={color.id}
                           />
@@ -179,7 +182,7 @@ export const App = () => {
                     </Card>
                   </Col>
                 </Row>
-                {formSubmitted && (
+                {formData && (
                   <Row>
                     <Col>
                       <Card>
