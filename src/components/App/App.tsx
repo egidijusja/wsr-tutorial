@@ -101,7 +101,7 @@ export const App = () => {
           <Container>
             <Row>
               <Col span={8}>
-                <Card>
+                <Card stretchVertically={true}>
                   <Card.Header
                     title="WSR Form"
                     subtitle="Create your own page with wix-style-react"
